@@ -1,0 +1,16 @@
+server:
+  port: 8084
+  servlet:
+    context-path: /users
+spring:
+  application:
+    name: timesheet-project
+  datasource:
+    url: jdbc:mysql://localhost:3306/timesheet_project?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: amine
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
