@@ -3,10 +3,7 @@ package com.example.timesheetbackent.service;
 
 import com.example.timesheetbackent.dtos.User;
 import com.example.timesheetbackent.mappers.EmployeeMapperImpl;
-import com.example.timesheetbackent.model.Employee;
-import com.example.timesheetbackent.model.EmployeeDev;
-import com.example.timesheetbackent.model.EmployeeManager;
-import com.example.timesheetbackent.model.Role;
+import com.example.timesheetbackent.model.*;
 import com.example.timesheetbackent.repository.EmployeeRepositorie;
 import com.example.timesheetbackent.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +32,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public EmployeeManager saveEmployeeManger(EmployeeManager employee) {
         employee.setPassword(bCryptPasswordEncoder.encode(employee.getPassword()));
+
         return employeeRepository.save(employee);
     }
 
     @Override
     public EmployeeDev saveEmployeeDev(EmployeeDev employee) {
         employee.setPassword(bCryptPasswordEncoder.encode(employee.getPassword()));
-        return employeeRepository.save(employee);
+        return employeeRepository.saveAndFlush(employee);
     }
 
+    @Override
+    public EmployeeDev saveEmployeeDevM(EmployeeDev employee) {
+        return employeeRepository.saveAndFlush(employee);
+    }
 
 
     @Override
@@ -62,6 +64,7 @@ public class UserServiceImpl implements UserService {
     public Employee addRoleToEmployee(String username, String rolename) {
         Employee employee = employeeRepository.findByUsername(username);
         Role role = roleRepository.findByRole(rolename);
+
         employee.getRoles().add(role);
         return employee;
     }
@@ -87,6 +90,13 @@ public class UserServiceImpl implements UserService {
         Role role1 = roleRepository.findByRole(role);
         return employeeRepository.findAll()
                 .stream().filter(e -> e.getRoles().contains(role1)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteProjectById(Long id) {
+        Employee employee = employeeRepository.findById(id).orElse(null);
+        employee.setRoles(null);
+        employeeRepository.delete(employee);
     }
 
 }

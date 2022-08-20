@@ -24,14 +24,14 @@ public class EmployeeManager extends Employee implements Serializable {
 
 
 
-    @OneToMany(mappedBy = "managerProject")
+    @OneToMany(mappedBy = "managerProject",cascade = CascadeType.ALL)
     private Collection<Project> managerProject = new ArrayList<>();
 
 
 
 
    @JsonIgnore
-    @OneToMany(mappedBy = "employeeManagerEvent")
+    @OneToMany(mappedBy = "employeeManagerEvent",cascade = CascadeType.ALL)
     private List<Event> eventList;
 
 

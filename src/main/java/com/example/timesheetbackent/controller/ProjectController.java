@@ -63,7 +63,7 @@ public class ProjectController {
     @CrossOrigin("*")
     @RequestMapping(value = "/deleteProjectById/{id}",method = RequestMethod.DELETE)
     public void deleteProjectById(@PathVariable("id") Long id){
-
+        System.out.println(" id " + id);
         projectService.deleteProjectById(id);
     }
 

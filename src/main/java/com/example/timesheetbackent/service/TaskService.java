@@ -60,13 +60,16 @@ public class TaskService {
         if (task1 == null) {
             return null;
         }
-
+        System.out.println(""+task);
         task1.setEmployeeTask(task.getEmployeeTask());
         task1.setNom(task.getNom());
         task1.setDescription(task.getDescription());
         task1.setDuration(task.getDuration());
         task1.setStatus(task.getStatus());
         task1.setVerified(task.isVerified());
+        task1.setProjectTask(task.getProjectTask());
+
+        System.out.println(""+task);
 
         return taskRepositorie.save(task);
     }

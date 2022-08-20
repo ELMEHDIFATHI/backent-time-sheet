@@ -11,6 +11,7 @@ import java.util.List;
 public interface UserService {
 
     EmployeeDev saveEmployeeDev(EmployeeDev employee);
+    EmployeeDev saveEmployeeDevM(EmployeeDev employee);
     EmployeeManager saveEmployeeManger(EmployeeManager employee);
 
     Role addRole(Role role);
@@ -22,4 +23,6 @@ public interface UserService {
     Employee findUserByUsername(String username);
 
     List<Employee> findByRole(String role);
+
+    void deleteProjectById(Long id);
 }

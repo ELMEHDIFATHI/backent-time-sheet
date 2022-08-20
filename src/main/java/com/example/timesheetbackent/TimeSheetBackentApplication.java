@@ -34,20 +34,24 @@ public class TimeSheetBackentApplication {
           //  userService.addRole(new Role(null,"USER"));
 
             //ajouter les users
-            /*
+/*
             EmployeeManager employeeManager =new EmployeeManager();
-            employeeManager.setUsername("admin2");
+            employeeManager.setUsername("admin");
             employeeManager.setPassword("123");
-            employeeManager.setFirstName("admin2");
-            employeeManager.setLastName("admin2");
+            employeeManager.setFirstName("admin");
+            employeeManager.setLastName("admin");
             userService.saveEmployeeManger(employeeManager);
 
-             */
+
 
 
             //ajouter les rôles aux users
-           // userService.addRoleToEmployee("admin2", "ADMIN");
-           // userService.addRoleToEmployee("admin2", "USER");
+           userService.addRoleToEmployee("admin", "ADMIN");
+           userService.addRoleToEmployee("admin", "USER");
+
+
+ */
+
 
 /*
 

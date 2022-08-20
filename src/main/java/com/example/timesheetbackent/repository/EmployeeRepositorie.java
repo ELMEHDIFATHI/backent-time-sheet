@@ -10,4 +10,6 @@ public interface EmployeeRepositorie extends JpaRepository<Employee,Long> {
 
     List<Employee> findAll();
     Employee findByUsername(String username);
+
+
 }

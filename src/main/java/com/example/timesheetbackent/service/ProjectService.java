@@ -51,6 +51,7 @@ public class ProjectService {
 
     public void deleteProjectById(Long id) {
         Project project = projectRepository.findById(id).orElse(null);
+        System.out.println(""+project);
         projectRepository.delete(project);
 
     }

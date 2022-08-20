@@ -2,6 +2,7 @@ package com.example.timesheetbackent.controller;
 
 
 import com.example.timesheetbackent.model.Task;
+import com.example.timesheetbackent.model.chart.TaskChart;
 import com.example.timesheetbackent.repository.TaskRepositorie;
 import com.example.timesheetbackent.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class TaskController {
 
     @Autowired
     TaskService taskService;
+
+    @Autowired
+    TaskRepositorie taskRepositorie;
 
     @CrossOrigin("*")
     @PostMapping("/addTaskToProject/{idP}/{idE}")
@@ -49,4 +53,30 @@ public class TaskController {
     public Task editTask(@PathVariable("id") Long id ,@RequestBody Task task){
         return taskService.editTask(id,task);
     }
+
+
+    @CrossOrigin("*")
+    @GetMapping("/ChartTask/{id}")
+    public TaskChart ChartTask(@PathVariable("id") Long id){
+
+        TaskChart taskChart = new TaskChart();
+        taskChart.setTaskDone(taskRepositorie.taskDone(id));
+        taskChart.setTaskInprogress(taskRepositorie.taskInProgress(id));
+        taskChart.setTaskTodo(taskRepositorie.taskTodo(id));
+        return  taskChart;
+    }
+
+    @CrossOrigin("*")
+    @PutMapping("/editTaskForEmplyee/")
+    public Task editTaskForEmplyee(@RequestBody Task task){
+        Task task1 = taskRepositorie.findById(task.getId_Task()).orElse(null);
+        task1.setStatus(task.getStatus());
+       return  taskRepositorie.save(task1);
+    }
+
+
+
+
+
+
 }

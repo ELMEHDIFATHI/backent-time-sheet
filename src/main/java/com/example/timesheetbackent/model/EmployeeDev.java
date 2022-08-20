@@ -26,7 +26,7 @@ public class EmployeeDev extends Employee implements Serializable {
     private List<Task> taskList;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable( name = "Employee_Event",
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_Event")
@@ -35,7 +35,7 @@ public class EmployeeDev extends Employee implements Serializable {
 
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<Time> timeList = new ArrayList<>();
 
 }
